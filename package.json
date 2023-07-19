@@ -1,0 +1,31 @@
+{
+  "name": "03-ts-methods",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tvivls/03-ts-methods.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tvivls/03-ts-methods/issues"
+  },
+  "homepage": "https://github.com/tvivls/03-ts-methods#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.1.0",
+    "@typescript-eslint/parser": "^6.1.0",
+    "@web-bee-ru/eslint-plugin": "^0.6.3",
+    "eslint": "^8.45.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-import-resolver-node": "^0.3.7",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-unicorn": "^48.0.0",
+    "typescript": "^5.1.6"
+  }
+}
