@@ -69,6 +69,7 @@ module.exports = {
 
         // @NOTE: TS
         '@typescript-eslint/semi': ['error', 'always'],
+        '@typescript-eslint/no-var-requires': 0,
         '@typescript-eslint/member-delimiter-style': ['error', {
             multiline: {
                 delimiter: 'semi',

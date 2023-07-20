@@ -28,3 +28,18 @@ export const hidden = () => {
 };
 
 export const visibilityChange = () => buildPromise(document.visibilityState === 'visible');
+
+const asd = async (description: string, visibilityFn: () => Promise<boolean>) => {
+    // const returned = await visible();
+    // const gone = await hidden();
+    const visibilityStatus = await visibilityFn();
+    const body = document.querySelector('body');
+    const text = document.createElement('p');
+    text.innerText = `${description} ${visibilityStatus}`;
+    body?.appendChild(text);
+};
+
+asd('visibilityChange function:', visibilityChange);
+asd('visible function:', visible);
+asd('hidden function:', hidden);
+
