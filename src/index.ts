@@ -2,11 +2,20 @@ import {hidden, visibilityChange, visible} from './visibility';
 
 
 const displayResult = async (description: string, visibilityFn: () => Promise<boolean>) => {
-    const visibilityStatus = await visibilityFn();
     const body = document.querySelector('body');
     const text = document.createElement('p');
-    text.innerText = `${description}: ${visibilityStatus}`;
+    text.innerText = `${description}:`;
     body?.appendChild(text);
+
+    const updateVisibilityStatus = async () => {
+        const visibilityStatus = await visibilityFn();
+        text.innerText = `${description}: ${visibilityStatus}`;
+    };
+
+    document.addEventListener('visibilitychange', updateVisibilityStatus);
+
+    await updateVisibilityStatus();
+
 };
 
 displayResult('visibility change', visibilityChange);
