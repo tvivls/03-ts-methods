@@ -1,30 +1,27 @@
-type VisibilityType = 'visible' | 'hidden';
+enum VisibilityEnum {
+  Visible='visible',
+  Hidden='hidden',
+}
 
-const buildPromise = (isVisible: VisibilityType | boolean) => new Promise<boolean>((resolve) => {
+const buildPromise = (isVisible?: VisibilityEnum) => new Promise<boolean>((resolve) => {
   const handleVisibility = () => {
     document.removeEventListener('visibilitychange', handleVisibility);
-    switch (typeof isVisible) {
-      case 'boolean':
-        resolve(document.visibilityState === 'visible');
-        break;
-      case 'string':
-        resolve(document.visibilityState === isVisible);
-        break;
-    }
+    resolve(isVisible
+        ? document.visibilityState === isVisible
+        : document.visibilityState === VisibilityEnum.Visible,
+    );
   };
   document.addEventListener('visibilitychange', handleVisibility);
 });
 
-export const visible = () => {
-  if (document.visibilityState === 'visible')
+const visibilityState = (visibilityState: VisibilityEnum) => {
+  if (document.visibilityState === visibilityState)
     return Promise.resolve(true);
-  return buildPromise('visible');
+  return buildPromise(visibilityState);
 };
 
-export const hidden = () => {
-  if (document.visibilityState === 'hidden')
-    return Promise.resolve(true);
-  return buildPromise('hidden');
-};
+export const visible = () => visibilityState(VisibilityEnum.Visible);
 
-export const visibilityChange = () => buildPromise(document.visibilityState === 'visible');
+export const hidden = () => visibilityState(VisibilityEnum.Hidden);
+
+export const visibilityChange = () => buildPromise();
